@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利多源企業有限公司｜全方位事業廢棄物清運與處理整合專家</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           1. 全域變數與基本設定 (品牌色彩定義)
+        ========================================= */
+        :root {
+            --brand-blue: #1A4B8C;
+            --brand-green: #2B824A;
+            --brand-teal: #006B6B;
+            --text-dark: #333333;
+            --text-light: #F4F4F4;
+        }
+
+        /* 加入平滑捲動效果 */
+        html { scroll-behavior: smooth; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #FAFAFA;
+        }
+
+        /* =========================================
+           2. 頂部導覽列 (Navbar)
+        ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            transition: all 0.3s ease;
+        }
+
+        /* Logo 區域加入文字排版 */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 50px;
+            display: block;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo-title {
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--brand-blue);
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+        
+        .logo-slogan {
+            font-size: 0.85rem;
+            color: var(--brand-green);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brand-blue);
+            font-weight: 700;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--brand-green);
+        }
+
+        /* 漢堡選單按鈕 (預設電腦版隱藏) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--brand-blue);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           3. 主視覺區 (Hero Section)
+        ========================================= */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--brand-green);
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: background 0.3s, transform 0.3s;
+            margin: 5px;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--brand-teal);
+            transform: translateY(-3px);
+        }
+
+        .cta-btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .cta-btn-outline:hover {
+            background-color: white;
+            color: var(--brand-blue);
+        }
+
+        /* =========================================
+           4. 關於我們摘要 (About Section)
+        ========================================= */
+        .about {
+            padding: 100px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background-color: #FFFFFF;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            color: var(--brand-blue);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background-color: var(--brand-green);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* =========================================
+           5. 核心服務亮點 (Services Section)
+        ========================================= */
+        .services {
+            padding: 100px 5%;
+            background-image: url('images/c6msn-x69f9.webp');
+            background-size: cover;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        .services-header {
+            margin-bottom: 60px;
+        }
+
+        .services-header h2 {
+            color: var(--brand-blue);
+            font-size: 2.2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-bottom: 5px solid var(--brand-green);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* =========================================
+           6. 頁尾聯絡資訊 (Footer)
+        ========================================= */
+        footer {
+            background-color: var(--brand-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 30px;
+        }
+
+        .footer-content h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* 官方連結樣式 */
+        .footer-link { color: #88c057; text-decoration: none; font-weight: 700; transition: color 0.3s; }
+        .footer-link:hover { color: #ffffff; text-decoration: underline; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           7. 回最上方按鈕 (Back to Top)
+        ========================================= */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: var(--brand-green);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            z-index: 99;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background-color: var(--brand-teal); transform: translateY(-5px); }
+
+        /* =========================================
+           8. 響應式網頁設計 (RWD for Mobile)
+        ========================================= */
+        @media (max-width: 768px) {
+            /* 顯示漢堡選單 */
+            .menu-toggle { display: block; }
+            
+            /* 手機版下拉選單設計 */
+            .nav-links {
+                display: none; /* 預設隱藏 */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 15px 0;
+            }
+            .nav-links.active { display: flex; } /* 點擊後顯示 */
+            .nav-links a { margin: 15px 0; text-align: center; margin-left: 0; font-size: 1.1rem; }
+
+            /* 微調手機版 Logo */
+            .logo-title { font-size: 1.1rem; }
+            .logo-slogan { font-size: 0.75rem; display: block; }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .about {
+                flex-direction: column;
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="images/logo.webp" alt="利多源企業有限公司 Logo">
+            <div class="logo-text">
+                <span class="logo-title">利多源</span>
+                <span class="logo-slogan">專業事業廢棄物清運</span>
+            </div>
+        </a>
+        
+        <!-- 漢堡選單按鈕 -->
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html" class="active">首頁</a>
+            <a href="about.html">關於我們</a>
+            <a href="services.html">服務項目</a>
+            <a href="#contact">聯絡我們</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img class="hero-bg-img" src="images/iuv5r-ej0nw.webp" alt="現代化環保工廠">
+        
+        <video class="hero-bg-video" autoplay loop muted playsinline>
+            <source src="" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>全方位事業廢棄物<br>清運與處理整合專家</h1>
+            <p>立足高雄，服務全台｜合法合規・專業調度・一站式環保處置方案</p>
+            <div>
+                <a href="#contact" class="cta-btn">免費現場勘查諮詢</a>
+                <a href="about.html" class="cta-btn cta-btn-outline">了解我們實力</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-text">
+            <h2>嚴格遵循法規，您最可靠的環保後盾</h2>
+            <p>利多源企業有限公司是一家立足於高雄、深獲政府與業界肯定的專業廢棄物清運服務商。我們深知企業在營運中產生的廢棄物，若處理不當，不僅危害環境，更可能面臨高額開罰與商譽受損的營運風險。</p>
+            <p>因此，我們擁有政府核發之 <strong>100% 合法清除許可證</strong>，並嚴格掌握廢棄物申報與流向追蹤（三聯單）。透過強大的全國處理廠通路整合，以及跨區高效的專業車隊調度，我們打破單一處理廠的限制，為您彈性媒合最佳的終端處置管道，真正實踐「合法、誠信、專業、環保」的永續理念。</p>
+        </div>
+        <div class="about-image">
+            <img src="images/mebe0-k2re3.webp" alt="利多源專業清運車隊">
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="services-header">
+            <h2>一站式專業服務項目</h2>
+            <p>從現場勘查、合規評估到終端處置，單一窗口全程為您對接</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="images/jkp8u-238gk.webp" alt="事業廢棄物清運">
+                <h3>事業廢棄物清運</h3>
+                <p>針對各類工業廢料、包裝廢材等一般及有害事業廢棄物，提供安全合規的專用車隊清運處置。</p>
+            </div>
+            
+            <div class="service-card">
+                <img src="images/d520g-13u8n.webp" alt="多元終端處理整合">
+                <h3>多元終端處理整合</h3>
+                <p>根據廢棄物特性，彈性安排焚化、物理處理或合法掩埋；更優先媒合資源再利用機構，推動企業循環經濟。</p>
+            </div>
+
+            <div class="service-card">
+                <img src="images/wem73-irqof.webp" alt="一站式環保工程">
+                <h3>一站式環保工程</h3>
+                <p>專業團隊親臨現場進行廢棄物評估與採樣，代尋合法終端處理廠，為您規劃最符合經濟效益的處置方案。</p>
+            </div>
+
+            <div class="service-card">
+                <img src="images/fotla-smnrb.webp" alt="企業環保法規諮詢">
+                <h3>企業環保法規諮詢</h3>
+                <p>協助產源事業單位了解環保署申報流程與合規流向，提供專業指導，全面降低您企業營運的環保風險。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h3>利多源企業有限公司</h3>
+            <p>📍 高雄市左營區博愛二路366號14樓之2 (服務範圍涵蓋全台)</p>
+            <p>📞 諮詢專線：(07) 322-9857</p>
+            <p>📠 傳真號碼：(07) 322-9897</p>
+            <p>✉️ 電子信箱：liduoyuan.kh@gmail.com</p>
+            <p>🕒 服務時間：週一至週五 08:30 - 17:30</p>
+            <!-- 官方政府連結 -->
+            <p style="margin-top: 15px;">🔗 相關連結：<a href="https://waste.moenv.gov.tw/RWD/Qry/" target="_blank" class="footer-link">環境部事業廢棄物申報及管理資訊系統</a></p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 利多源企業有限公司 LI DUO YUAN ENTERPRISE CO., LTD. 版權所有.</p>
+        </div>
+    </footer>
+
+    <!-- 回最上方按鈕 -->
+    <a href="#top" class="back-to-top" id="backToTop">▲</a>
+
+    <!-- 互動腳本：處理漢堡選單與回最上方按鈕的顯示 -->
+    <script>
+        // 漢堡選單切換邏輯
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 回最上方按鈕顯示邏輯
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+</html>

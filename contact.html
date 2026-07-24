@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們｜利多源企業有限公司 - 甲級事業廢棄物清除專家</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           1. 全域變數與基本設定
+        ========================================= */
+        :root {
+            --brand-blue: #1A4B8C;
+            --brand-green: #2B824A;
+            --brand-teal: #006B6B;
+            --text-dark: #333333;
+            --text-light: #F4F4F4;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
+        body { line-height: 1.6; color: var(--text-dark); background-color: #FAFAFA; }
+
+        /* =========================================
+           2. 頂部導覽列 (Navbar)
+        ========================================= */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100; display: flex; justify-content: space-between;
+            align-items: center; padding: 15px 5%;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-container img { height: 50px; display: block; }
+        .logo-text { display: flex; flex-direction: column; justify-content: center; }
+        .logo-title { font-weight: 900; font-size: 1.3rem; color: var(--brand-blue); line-height: 1.1; letter-spacing: 1px; }
+        .logo-slogan { font-size: 0.85rem; color: var(--brand-green); font-weight: 700; letter-spacing: 1px; margin-top: 2px; }
+
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--brand-blue);
+            font-weight: 700; margin-left: 30px; transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-green); }
+
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--brand-blue); cursor: pointer; }
+
+        /* =========================================
+           3. 內頁頂部橫幅 (Inner Page Hero)
+        ========================================= */
+        .inner-hero {
+            position: relative; width: 100%; height: 40vh; 
+            background-color: var(--brand-blue);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; margin-top: 80px; overflow: hidden;
+        }
+        .inner-hero img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.4; z-index: 1;
+        }
+        .inner-hero-content { position: relative; z-index: 2; color: white; }
+        .inner-hero-content h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; }
+
+        /* =========================================
+           4. 聯絡資訊與表單區塊 (Contact Layout)
+        ========================================= */
+        .contact-section {
+            padding: 80px 5%;
+            background-image: url('images/c6msn-x69f9.webp');
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        /* 左側：資訊與地圖 */
+        .contact-info-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--brand-blue);
+        }
+
+        .contact-info-box h2 {
+            color: var(--brand-blue);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .info-list { list-style: none; margin-bottom: 30px; }
+        .info-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+        }
+        .info-list li span.icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 右側：線上諮詢表單 */
+        .contact-form-box {
+            flex: 1.2;
+            background: #FFFFFF;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--brand-green);
+        }
+
+        .contact-form-box h2 {
+            color: var(--brand-green);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .contact-form-box p.form-desc {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--brand-blue);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: #fcfcfc;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--brand-green);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(43, 130, 74, 0.1);
+        }
+        .form-group textarea { height: 120px; resize: vertical; }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--brand-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: var(--brand-green);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           5. 填單後的下一步 (Next Steps)
+        ========================================= */
+        .next-steps {
+            padding: 60px 5% 100px;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+        .next-steps h3 { color: var(--brand-blue); font-size: 1.8rem; margin-bottom: 40px; }
+        
+        .steps-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .step-item {
+            flex: 1;
+            padding: 30px 20px;
+            background: #f8fbf9;
+            border-radius: 10px;
+            border-bottom: 4px solid #eee;
+            transition: border-color 0.3s;
+        }
+        .step-item:hover { border-bottom-color: var(--brand-green); }
+        .step-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .step-item h4 { color: var(--brand-green); margin-bottom: 10px; font-size: 1.2rem;}
+        .step-item p { color: #666; font-size: 0.95rem; }
+
+        /* =========================================
+           6. 頁尾與共用元件
+        ========================================= */
+        footer {
+            background-color: var(--brand-blue); color: rgba(255, 255, 255, 0.8);
+            padding: 60px 5% 30px; text-align: center;
+        }
+        .footer-content h3 { color: white; font-size: 1.8rem; margin-bottom: 15px; }
+        .footer-content p { margin-bottom: 10px; font-size: 1.1rem; }
+        .footer-link { color: #88c057; text-decoration: none; font-weight: 700; transition: color 0.3s; }
+        .footer-link:hover { color: #ffffff; text-decoration: underline; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; font-size: 0.9rem; margin-top: 30px;}
+
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: var(--brand-green);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 99;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background-color: var(--brand-teal); transform: translateY(-5px); }
+
+        /* =========================================
+           7. 響應式網頁設計 (RWD)
+        ========================================= */
+        @media (max-width: 900px) {
+            .contact-section { flex-direction: column; }
+            .steps-wrapper { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1); padding: 15px 0;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 15px 0; text-align: center; margin-left: 0; font-size: 1.1rem; }
+            .logo-title { font-size: 1.1rem; }
+            .logo-slogan { font-size: 0.75rem; display: block; }
+            .contact-form-box { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- 導覽列 -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="images/logo.webp" alt="利多源企業有限公司 Logo">
+            <div class="logo-text">
+                <span class="logo-title">利多源</span>
+                <span class="logo-slogan">專業事業廢棄物清運</span>
+            </div>
+        </a>
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="about.html">關於我們</a>
+            <a href="services.html">服務項目</a>
+            <a href="contact.html" class="active">聯絡我們</a>
+        </nav>
+    </header>
+
+    <!-- 內頁頂部橫幅 -->
+    <section class="inner-hero">
+        <img src="images/contact-banner.webp" alt="聯絡我們橫幅">
+        <div class="inner-hero-content">
+            <h1>聯絡我們</h1>
+            <p>免費現場勘查與專屬報價，歡迎隨時與我們聯繫</p>
+        </div>
+    </section>
+
+    <!-- 聯絡資訊與表單區塊 -->
+    <section class="contact-section">
+        
+        <!-- 左側：聯絡資訊與地圖 -->
+        <div class="contact-info-box">
+            <h2>服務據點與聯絡方式</h2>
+            <ul class="info-list">
+                <li><span class="icon">📞</span> <div><strong>諮詢專線：</strong><br>(07) 322-9857</div></li>
+                <li><span class="icon">📠</span> <div><strong>傳真號碼：</strong><br>(07) 322-9897</div></li>
+                <li><span class="icon">✉️</span> <div><strong>電子信箱：</strong><br>liduoyuan.kh@gmail.com</div></li>
+                <li><span class="icon">🕒</span> <div><strong>服務時間：</strong><br>週一至週五 08:30 - 17:30</div></li>
+                <li><span class="icon">📍</span> <div><strong>公司地址：</strong><br>高雄市左營區博愛二路366號14樓之2<br><span style="font-size: 0.9rem; color: #888;">(服務範圍涵蓋全台灣)</span></div></li>
+            </ul>
+
+            <!-- Google 地圖 iframe嵌入 -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.029864275069!2d120.3015403!3d22.6663039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0509a2444df5%3A0xcda99fa991739f88!2zODA06auY6ZuE5biC5bem54ef5Y2A5Y2a5oSb5LqM6LevMzY26Jmf!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- 右側：線上諮詢表單 (修改支援免費空間靜態網頁) -->
+        <div class="contact-form-box">
+            <h2>線上預約諮詢</h2>
+            <p class="form-desc">請填寫下方表單，我們的環保專員將於上班時間內儘速與您聯繫，為您安排專屬的評估方案。</p>
+            
+            <!-- 使用 FormSubmit 服務，直接將表單寄到客戶信箱 -->
+            <form action="https://formsubmit.co/liduoyuan.kh@gmail.com" method="POST">
+                
+                <!-- 系統隱藏設定 -->
+                <input type="hidden" name="_subject" value="【利多源官網】收到新的線上諮詢！">
+                <input type="hidden" name="_captcha" value="false"> <!-- 關閉圖形驗證碼，讓客戶填寫更順暢 -->
+
+                <div class="form-group">
+                    <label for="companyName">企業/公司名稱 *</label>
+                    <input type="text" id="companyName" name="companyName" placeholder="請輸入貴公司名稱" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactName">聯絡人姓名 *</label>
+                    <input type="text" id="contactName" name="contactName" placeholder="請輸入聯絡人姓名" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">聯絡電話/手機 *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="請輸入聯絡電話" required>
+                </div>
+                <div class="form-group">
+                    <label for="wasteType">預估清運廢棄物類型</label>
+                    <select id="wasteType" name="wasteType">
+                        <option value="" disabled selected>請選擇廢棄物類型 (可複選/備註中說明)</option>
+                        <option value="一般事業廢棄物">一般事業廢棄物 (工業廢料、包材等)</option>
+                        <option value="有害事業廢棄物">有害事業廢棄物</option>
+                        <option value="廠房拆除/專案工程">廠房拆除或專案工程</option>
+                        <option value="其他">其他 (請於下方說明)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">詢問內容與廢棄物狀況描述 *</label>
+                    <textarea id="message" name="message" placeholder="請簡述您的需求、廢棄物大約數量或廠區所在地區..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">送 出 諮 詢</button>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- 填單後的下一步 -->
+    <section class="next-steps">
+        <h3>填單後的處理流程</h3>
+        <div class="steps-wrapper">
+            <div class="step-item">
+                <div class="step-icon">⏱️</div>
+                <h4>24小時內專人回覆</h4>
+                <p>收到您的表單後，我們的環保顧問將於工作日內主動致電了解初步需求。</p>
+            </div>
+            <div class="step-item">
+                <div class="step-icon">👷‍♂️</div>
+                <h4>安排免費現場勘查</h4>
+                <p>針對您的廢棄物狀況，我們將安排專業團隊前往廠區進行實地評估與採樣。</p>
+            </div>
+            <div class="step-item">
+                <div class="step-icon">📋</div>
+                <h4>提供專屬清運報價</h4>
+                <p>為您尋找最合適的終端處理廠，並提供透明、合法的專屬清運報價方案。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h3>利多源企業有限公司</h3>
+            <p>📍 高雄市左營區博愛二路366號14樓之2 (服務範圍涵蓋全台)</p>
+            <p>📞 諮詢專線：(07) 322-9857</p>
+            <p>📠 傳真號碼：(07) 322-9897</p>
+            <p>✉️ 電子信箱：liduoyuan.kh@gmail.com</p>
+            <p>🕒 服務時間：週一至週五 08:30 - 17:30</p>
+            <p style="margin-top: 15px;">🔗 相關連結：<a href="https://waste.moenv.gov.tw/RWD/Qry/" target="_blank" class="footer-link">環境部事業廢棄物申報及管理資訊系統</a></p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 利多源企業有限公司 LI DUO YUAN ENTERPRISE CO., LTD. 版權所有.</p>
+        </div>
+    </footer>
+
+    <!-- 回最上方按鈕 -->
+    <a href="#top" class="back-to-top" id="backToTop">▲</a>
+
+    <!-- 互動腳本 -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+</html>

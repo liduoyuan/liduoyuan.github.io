@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服務項目｜利多源企業有限公司 - 專業廢棄物處理方案</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           1. 全域變數與基本設定
+        ========================================= */
+        :root {
+            --brand-blue: #1A4B8C;
+            --brand-green: #2B824A;
+            --brand-teal: #006B6B;
+            --text-dark: #333333;
+        }
+
+        /* 加入平滑捲動效果，讓回最上方按鈕滑動更順暢 */
+        html { scroll-behavior: smooth; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
+        body { line-height: 1.6; color: var(--text-dark); background-color: #FAFAFA; }
+
+        /* =========================================
+           2. 頂部導覽列 (Navbar)
+        ========================================= */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100; display: flex; justify-content: space-between;
+            align-items: center; padding: 15px 5%;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-container img { height: 50px; display: block; }
+        .logo-text { display: flex; flex-direction: column; justify-content: center; }
+        .logo-title { font-weight: 900; font-size: 1.3rem; color: var(--brand-blue); line-height: 1.1; letter-spacing: 1px; }
+        .logo-slogan { font-size: 0.85rem; color: var(--brand-green); font-weight: 700; letter-spacing: 1px; margin-top: 2px; }
+
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--brand-blue);
+            font-weight: 700; margin-left: 30px; transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-green); }
+
+        /* 漢堡選單按鈕 (預設電腦版隱藏) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--brand-blue);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           3. 內頁頂部橫幅 (Inner Page Hero)
+        ========================================= */
+        .inner-hero {
+            position: relative; width: 100%; height: 40vh; 
+            background-color: var(--brand-blue);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; margin-top: 80px; overflow: hidden;
+        }
+        .inner-hero img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.4; z-index: 1;
+        }
+        .inner-hero-content { position: relative; z-index: 2; color: white; }
+        .inner-hero-content h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; }
+
+        /* =========================================
+           4. 四大服務詳細介紹 (圖文交錯排版)
+        ========================================= */
+        .service-detail-section { padding: 80px 5%; background-color: #FFFFFF; }
+        
+        .service-row {
+            display: flex; align-items: center; gap: 60px;
+            margin-bottom: 100px;
+        }
+        .service-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .service-image { flex: 1; position: relative; }
+        .service-image img.main-img {
+            width: 100%; border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-image img.icon-badge {
+            position: absolute; bottom: -20px; right: -20px;
+            width: 110px; height: 110px; background: white;
+            border-radius: 50%; padding: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .service-row:nth-child(even) .service-image img.icon-badge { right: auto; left: -20px; }
+
+        .service-info { flex: 1.2; }
+        .service-info h2 {
+            color: var(--brand-blue); font-size: 2.2rem; margin-bottom: 20px;
+            position: relative; padding-bottom: 10px;
+        }
+        .service-info h2::after {
+            content: ''; position: absolute; left: 0; bottom: 0;
+            width: 60px; height: 4px; background-color: var(--brand-green);
+        }
+        
+        .service-info > p { font-size: 1.1rem; color: #555; margin-bottom: 25px; text-align: justify; }
+
+        .service-features { list-style: none; }
+        .service-features li {
+            font-size: 1.05rem; margin-bottom: 15px; color: var(--text-dark);
+            display: flex; align-items: flex-start;
+        }
+        .service-features li::before {
+            content: '✔'; color: white; background-color: var(--brand-green);
+            border-radius: 50%; width: 22px; height: 22px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; margin-right: 12px; flex-shrink: 0; margin-top: 3px;
+        }
+
+        /* =========================================
+           5. 一站式服務流程 (Service Process Timeline)
+        ========================================= */
+        .process-section {
+            padding: 100px 5%;
+            background-image: url('images/service-step-bg.webp');
+            background-size: cover; background-attachment: fixed;
+            text-align: center;
+        }
+        .process-header h2 { color: var(--brand-blue); font-size: 2.2rem; margin-bottom: 15px; }
+        .process-header p { color: #666; margin-bottom: 70px; font-size: 1.1rem; }
+
+        .process-container {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            position: relative; max-width: 1200px; margin: 0 auto;
+        }
+        
+        .process-container::before {
+            content: ''; position: absolute; top: 40px; left: 5%; right: 5%;
+            height: 4px; background-color: rgba(43, 130, 74, 0.2); z-index: 1;
+        }
+
+        .process-step { flex: 1; position: relative; z-index: 2; padding: 0 10px; }
+        
+        .step-number {
+            width: 80px; height: 80px; background-color: var(--brand-blue);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 1.8rem;
+            font-weight: 900; margin: 0 auto 20px auto; border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .process-step:hover .step-number {
+            transform: scale(1.15); background-color: var(--brand-green);
+        }
+
+        .process-step h3 { color: var(--brand-blue); font-size: 1.15rem; margin-bottom: 10px; line-height: 1.4; }
+        .process-step p { font-size: 0.95rem; color: #555; }
+
+        /* =========================================
+           6. 頁尾聯絡資訊 (Footer)
+        ========================================= */
+        footer {
+            background-color: var(--brand-blue); color: rgba(255, 255, 255, 0.8);
+            padding: 60px 5% 30px; text-align: center;
+        }
+        .footer-content h3 { color: white; font-size: 1.8rem; margin-bottom: 15px; }
+        .footer-content p { margin-bottom: 10px; font-size: 1.1rem; }
+        /* 加入官方連結樣式 */
+        .footer-link { color: #88c057; text-decoration: none; font-weight: 700; transition: color 0.3s; }
+        .footer-link:hover { color: #ffffff; text-decoration: underline; }
+        
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; font-size: 0.9rem; margin-top: 30px;}
+
+        /* =========================================
+           7. 回最上方按鈕 (Back to Top)
+        ========================================= */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: var(--brand-green);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            z-index: 99;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background-color: var(--brand-teal); transform: translateY(-5px); }
+
+        /* =========================================
+           8. 響應式網頁設計 (RWD for Mobile)
+        ========================================= */
+        @media (max-width: 900px) {
+            .service-row, .service-row:nth-child(even) { flex-direction: column; gap: 40px; margin-bottom: 70px; }
+            .process-container { flex-direction: column; align-items: center; }
+            .process-container::before {
+                top: 0; bottom: 0; left: 50%; width: 4px; height: auto; transform: translateX(-50%);
+            }
+            .process-step { margin-bottom: 40px; width: 100%; max-width: 350px; }
+        }
+        
+        @media (max-width: 768px) {
+            /* 顯示漢堡選單 */
+            .menu-toggle { display: block; }
+            
+            /* 手機版下拉選單設計 */
+            .nav-links {
+                display: none; /* 預設隱藏 */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 15px 0;
+            }
+            .nav-links.active { display: flex; } /* 點擊後顯示 */
+            .nav-links a { margin: 15px 0; text-align: center; margin-left: 0; font-size: 1.1rem; }
+
+            /* 微調手機版 Logo 讓字體不擁擠 */
+            .logo-title { font-size: 1.1rem; }
+            .logo-slogan { font-size: 0.75rem; display: block; } /* 確保手機版也看得到副標語 */
+            
+            .service-image img.icon-badge { display: none; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- 導覽列 -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="images/logo.webp" alt="利多源企業有限公司 Logo">
+            <div class="logo-text">
+                <span class="logo-title">利多源</span>
+                <span class="logo-slogan">專業事業廢棄物清運</span>
+            </div>
+        </a>
+        
+        <!-- 漢堡選單按鈕 -->
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        
+        <!-- 選單項目 -->
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="about.html">關於我們</a>
+            <a href="services.html" class="active">服務項目</a>
+            <a href="#contact">聯絡我們</a>
+        </nav>
+    </header>
+
+    <!-- 內頁頂部橫幅 -->
+    <section class="inner-hero">
+        <img src="images/services-banner.webp" alt="環保廢棄物處理服務">
+        <div class="inner-hero-content">
+            <h1>一站式專業服務項目</h1>
+            <p>從現場勘查、合規評估到終端處置，為企業量身打造專屬清運方案</p>
+        </div>
+    </section>
+
+    <!-- 四大服務詳細介紹 -->
+    <section class="service-detail-section">
+        
+        <!-- 服務 1 -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="images/service-1.webp" class="main-img" alt="事業廢棄物清運實景">
+                <img src="images/jkp8u-238gk.webp" class="icon-badge" alt="清運圖示">
+            </div>
+            <div class="service-info">
+                <h2>事業廢棄物清運</h2>
+                <p>針對企業廠區產出之各類事業廢棄物，我們提供安全、合規且高效率的專車清運服務。嚴格把關每一道清運程序，確保您的廠區環境整潔與法規遵循。</p>
+                <ul class="service-features">
+                    <li><strong>一般事業廢棄物：</strong>專精於各類工業廢料、包裝廢材、下腳料等廠區廢棄物之清運處置。</li>
+                    <li><strong>有害事業廢棄物：</strong>嚴格遵循國家環保標準，派遣具備合格證照之專業人員與專用防漏車隊執行作業。</li>
+                    <li><strong>專業車隊調度：</strong>具備龐大合格清運車隊，提供跨區域彈性派車，即時解決廠區廢棄物囤積壓力。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 服務 2 -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="images/service-2.webp" class="main-img" alt="多元終端處理整合廠區">
+                <img src="images/d520g-13u8n.webp" class="icon-badge" alt="處理圖示">
+            </div>
+            <div class="service-info">
+                <h2>多元終端處理整合</h2>
+                <p>打破單一處理廠的技術限制，我們聯袂全國多家頂尖處理機構，為您的廢棄物尋找最環保且具經濟效益的最終去處。</p>
+                <ul class="service-features">
+                    <li><strong>推動資源再利用：</strong>優先為企業媒合資源化再利用機構，將廢棄物轉化為可用資源，落實企業 ESG 減碳目標。</li>
+                    <li><strong>多元處置方案：</strong>針對無法再利用之廢棄物，依據其物理與化學特性，精準彈性安排焚化、物理處理或合法衛生掩埋。</li>
+                    <li><strong>最優成本規劃：</strong>透過整合上下游通路資源，為產源事業單位爭取最合理的終端處理報價。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 服務 3 -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="images/service-3.webp" class="main-img" alt="一站式環保工程現場勘查">
+                <img src="images/wem73-irqof.webp" class="icon-badge" alt="工程圖示">
+            </div>
+            <div class="service-info">
+                <h2>一站式環保工程服務</h2>
+                <p>環保專案不僅僅是清運，更需要專業的工程評估。我們提供從前端勘查到後端處置的單一窗口全程對接服務。</p>
+                <ul class="service-features">
+                    <li><strong>現場評估與採樣：</strong>由具備豐富經驗的環保工程團隊親臨廠區，實地勘查廢棄物產出狀況、種類並進行採樣。</li>
+                    <li><strong>客製化流向規劃：</strong>根據採樣化驗結果，代為尋找最適合且完全合法的終端處理廠，量身打造綜合處置方案。</li>
+                    <li><strong>省時省力單一窗口：</strong>為企業省去繁瑣的多方比價與聯絡成本，讓廢棄物處理變得簡單高效。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 服務 4 -->
+        <div class="service-row">
+            <div class="service-image">
+                <img src="images/service-4.webp" class="main-img" alt="企業環保法規諮詢會議">
+                <img src="images/fotla-smnrb.webp" class="icon-badge" alt="法規圖示">
+            </div>
+            <div class="service-info">
+                <h2>企業環保法規諮詢</h2>
+                <p>環保法規日趨嚴格且繁雜，利多源不僅是您的清運商，更是您最可靠的環保法規顧問團隊。</p>
+                <ul class="service-features">
+                    <li><strong>網路申報與流向指導：</strong>協助產源事業單位釐清並順利完成環保署（事業廢棄物申報系統）的各項複雜申報作業。</li>
+                    <li><strong>三聯單作業教學：</strong>指導企業正確開立與追蹤廢棄物遞送三聯單，確保流向紀錄透明無虞。</li>
+                    <li><strong>全面降低營運風險：</strong>提供即時法規更新諮詢，確保企業在生產營運中100%合法合規，免除受罰風險。</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 服務流程區塊 -->
+    <section class="process-section">
+        <div class="process-header">
+            <h2>五步一站式服務流程</h2>
+            <p>標準化、透明化的作業流程，為您打造安心無虞的環保清運體驗</p>
+        </div>
+        
+        <div class="process-container">
+            <!-- 步驟 1 -->
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h3>需求諮詢與<br>現場勘查</h3>
+                <p>初步了解廢棄物產出狀況，專業團隊親臨廠區實地確認細節與採樣。</p>
+            </div>
+            <!-- 步驟 2 -->
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h3>方案規劃與<br>合規評估</h3>
+                <p>根據廢棄物特性代尋合法終端廠，提供透明化報價與最適處置規劃。</p>
+            </div>
+            <!-- 步驟 3 -->
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h3>簽訂合約與<br>網路申報</h3>
+                <p>簽署合法甲級清運合約，並協助完成環保署系統建檔與連線申報作業。</p>
+            </div>
+            <!-- 步驟 4 -->
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h3>專業車隊<br>派車清運</h3>
+                <p>依約定時間，派遣領有合格證照之專業清運車隊與人員進行現場作業。</p>
+            </div>
+            <!-- 步驟 5 -->
+            <div class="process-step">
+                <div class="step-number">05</div>
+                <h3>進廠處置與<br>流向確認</h3>
+                <p>追蹤廢棄物順利進入終端處理廠，三聯單結案並提供妥善處理證明。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h3>利多源企業有限公司</h3>
+            <p>📍 高雄市左營區博愛二路366號14樓之2 (服務範圍涵蓋全台)</p>
+            <p>📞 諮詢專線：(07) 322-9857</p>
+            <p>📠 傳真號碼：(07) 322-9897</p>
+            <p>✉️ 電子信箱：liduoyuan.kh@gmail.com</p>
+            <p>🕒 服務時間：週一至週五 08:30 - 17:30</p>
+            <!-- 官方政府連結 -->
+            <p style="margin-top: 15px;">🔗 相關連結：<a href="https://waste.moenv.gov.tw/RWD/Qry/" target="_blank" class="footer-link">環境部事業廢棄物申報及管理資訊系統</a></p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 利多源企業有限公司 LI DUO YUAN ENTERPRISE CO., LTD. 版權所有.</p>
+        </div>
+    </footer>
+
+    <!-- 回最上方按鈕 -->
+    <a href="#top" class="back-to-top" id="backToTop">▲</a>
+
+    <!-- 互動腳本：處理漢堡選單與回最上方按鈕的顯示 -->
+    <script>
+        // 漢堡選單切換邏輯
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 回最上方按鈕顯示邏輯
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+</html>
