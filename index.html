@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>利多源企業有限公司｜全方位事業廢棄物清運與處理整合專家</title>
+    <meta name="description" content="利多源企業有限公司是高雄在地、服務全台的甲級事業廢棄物清除專家。提供100%合法合規的一般與有害事業廢棄物清運、多元終端處理整合、一站式環保工程與企業環保法規諮詢服務。">
+    <meta name="keywords" content="事業廢棄物清運, 甲級清除許可, 廢棄物處理, 利多源企業, 高雄廢棄物清運, 環保工程, 有害事業廢棄物, 廢棄物申報">
+    
+    <meta property="og:title" content="利多源企業有限公司｜全方位事業廢棄物清運與處理整合專家">
+    <meta property="og:description" content="具備政府核發「甲級」清除許可證，為企業打造合法、安心、高效率的專屬清運方案。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/logo.webp">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         /* =========================================
@@ -18,7 +26,9 @@
         }
 
         /* 加入平滑捲動效果 */
-        html { scroll-behavior: smooth; }
+        html { 
+            scroll-behavior: smooth; 
+        }
 
         * {
             margin: 0;
@@ -50,7 +60,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Logo 區域加入文字排版 */
         .logo-container {
             display: flex;
             align-items: center;
@@ -204,10 +213,47 @@
         }
 
         /* =========================================
+           新增加：YouTube 品牌影片區塊 (Video Section)
+        ========================================= */
+        .video-section {
+            padding: 80px 5% 40px;
+            background-color: #f4f8f5;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            color: var(--brand-blue);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .video-section p {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            /* 讓 iframe 保持 16:9 比例 */
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* =========================================
            4. 關於我們摘要 (About Section)
         ========================================= */
         .about {
-            padding: 100px 5%;
+            padding: 80px 5% 100px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -330,8 +376,17 @@
         }
         
         /* 官方連結樣式 */
-        .footer-link { color: #88c057; text-decoration: none; font-weight: 700; transition: color 0.3s; }
-        .footer-link:hover { color: #ffffff; text-decoration: underline; }
+        .footer-link { 
+            color: #88c057; 
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: color 0.3s; 
+        }
+
+        .footer-link:hover { 
+            color: #ffffff; 
+            text-decoration: underline; 
+        }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.2);
@@ -343,41 +398,78 @@
            7. 回最上方按鈕 (Back to Top)
         ========================================= */
         .back-to-top {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 50px; height: 50px; background-color: var(--brand-green);
-            color: white; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center;
-            text-decoration: none; font-size: 1.2rem;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--brand-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
             z-index: 99;
         }
-        .back-to-top.show { opacity: 1; visibility: visible; }
-        .back-to-top:hover { background-color: var(--brand-teal); transform: translateY(-5px); }
+
+        .back-to-top.show { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+
+        .back-to-top:hover { 
+            background-color: var(--brand-teal); 
+            transform: translateY(-5px); 
+        }
 
         /* =========================================
            8. 響應式網頁設計 (RWD for Mobile)
         ========================================= */
         @media (max-width: 768px) {
             /* 顯示漢堡選單 */
-            .menu-toggle { display: block; }
+            .menu-toggle { 
+                display: block; 
+            }
             
             /* 手機版下拉選單設計 */
             .nav-links {
                 display: none; /* 預設隱藏 */
                 flex-direction: column;
                 position: absolute;
-                top: 100%; left: 0; width: 100%;
+                top: 100%;
+                left: 0;
+                width: 100%;
                 background: rgba(255, 255, 255, 0.98);
                 box-shadow: 0 5px 10px rgba(0,0,0,0.1);
                 padding: 15px 0;
             }
-            .nav-links.active { display: flex; } /* 點擊後顯示 */
-            .nav-links a { margin: 15px 0; text-align: center; margin-left: 0; font-size: 1.1rem; }
+
+            .nav-links.active { 
+                display: flex; 
+            } /* 點擊後顯示 */
+
+            .nav-links a { 
+                margin: 15px 0; 
+                text-align: center; 
+                margin-left: 0; 
+                font-size: 1.1rem; 
+            }
 
             /* 微調手機版 Logo */
-            .logo-title { font-size: 1.1rem; }
-            .logo-slogan { font-size: 0.75rem; display: block; }
+            .logo-title { 
+                font-size: 1.1rem; 
+            }
+
+            .logo-slogan { 
+                font-size: 0.75rem; 
+                display: block; 
+            }
             
             .hero-content h1 {
                 font-size: 2rem;
@@ -386,6 +478,10 @@
             .about {
                 flex-direction: column;
                 padding: 60px 5%;
+            }
+
+            .video-section { 
+                padding: 60px 5% 20px; 
             }
         }
     </style>
@@ -401,7 +497,6 @@
             </div>
         </a>
         
-        <!-- 漢堡選單按鈕 -->
         <div class="menu-toggle" id="mobile-menu">☰</div>
         
         <nav class="nav-links" id="nav-links">
@@ -425,9 +520,17 @@
             <h1>全方位事業廢棄物<br>清運與處理整合專家</h1>
             <p>立足高雄，服務全台｜合法合規・專業調度・一站式環保處置方案</p>
             <div>
-                <a href="#contact" class="cta-btn">免費現場勘查諮詢</a>
-                <a href="about.html" class="cta-btn cta-btn-outline">了解我們實力</a>
+                <a href="contact.html" class="cta-btn">免費現場勘查諮詢</a>
+                <a href="#brand-video" class="cta-btn cta-btn-outline">觀看品牌影片</a>
             </div>
+        </div>
+    </section>
+
+    <section id="brand-video" class="video-section">
+        <h2>利多源・您最安心的環保後盾</h2>
+        <p>1分鐘了解我們如何為您的企業解決廢棄物難題，實現永續發展</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/VOGJCGlwPb4?rel=0" title="利多源企業有限公司 品牌形象影片" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
 
@@ -483,7 +586,6 @@
             <p>📠 傳真號碼：(07) 322-9897</p>
             <p>✉️ 電子信箱：liduoyuan.kh@gmail.com</p>
             <p>🕒 服務時間：週一至週五 08:30 - 17:30</p>
-            <!-- 官方政府連結 -->
             <p style="margin-top: 15px;">🔗 相關連結：<a href="https://waste.moenv.gov.tw/RWD/Qry/" target="_blank" class="footer-link">環境部事業廢棄物申報及管理資訊系統</a></p>
         </div>
         <div class="footer-bottom">
@@ -491,19 +593,15 @@
         </div>
     </footer>
 
-    <!-- 回最上方按鈕 -->
     <a href="#top" class="back-to-top" id="backToTop">▲</a>
 
-    <!-- 互動腳本：處理漢堡選單與回最上方按鈕的顯示 -->
     <script>
-        // 漢堡選單切換邏輯
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
-        // 回最上方按鈕顯示邏輯
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
