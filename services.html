@@ -174,7 +174,7 @@
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; font-size: 0.9rem; margin-top: 30px;}
 
         /* =========================================
-           7. 回最上方按鈕 (Back to Top)
+           7. 飄浮按鈕 (Back to Top & LINE)
         ========================================= */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -188,6 +188,28 @@
         }
         .back-to-top.show { opacity: 1; visibility: visible; }
         .back-to-top:hover { background-color: var(--brand-teal); transform: translateY(-5px); }
+
+        /* LINE 飄浮按鈕 */
+        .floating-line {
+            position: fixed;
+            bottom: 95px; /* 設定在 top 按鈕的上方，預留安全距離 */
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #00B900; /* LINE 官方專屬綠色 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 99;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .floating-line:hover {
+            transform: translateY(-5px);
+            background-color: #009900;
+        }
 
         /* =========================================
            8. 響應式網頁設計 (RWD for Mobile)
@@ -223,12 +245,26 @@
             .logo-slogan { font-size: 0.75rem; display: block; } /* 確保手機版也看得到副標語 */
             
             .service-image img.icon-badge { display: none; }
+
+            /* 手機版飄浮按鈕微調 (稍微縮小並靠邊緣，避免擋住內容) */
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .floating-line {
+                bottom: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body id="top">
 
-    <!-- 導覽列 -->
     <header>
         <a href="index.html" class="logo-container">
             <img src="images/logo.webp" alt="利多源企業有限公司 Logo">
@@ -238,10 +274,8 @@
             </div>
         </a>
         
-        <!-- 漢堡選單按鈕 -->
         <div class="menu-toggle" id="mobile-menu">☰</div>
         
-        <!-- 選單項目 -->
         <nav class="nav-links" id="nav-links">
             <a href="index.html">首頁</a>
             <a href="about.html">關於我們</a>
@@ -250,7 +284,6 @@
         </nav>
     </header>
 
-    <!-- 內頁頂部橫幅 -->
     <section class="inner-hero">
         <img src="images/services-banner.webp" alt="環保廢棄物處理服務">
         <div class="inner-hero-content">
@@ -259,10 +292,8 @@
         </div>
     </section>
 
-    <!-- 四大服務詳細介紹 -->
     <section class="service-detail-section">
         
-        <!-- 服務 1 -->
         <div class="service-row">
             <div class="service-image">
                 <img src="images/service-1.webp" class="main-img" alt="事業廢棄物清運實景">
@@ -279,7 +310,6 @@
             </div>
         </div>
 
-        <!-- 服務 2 -->
         <div class="service-row">
             <div class="service-image">
                 <img src="images/service-2.webp" class="main-img" alt="多元終端處理整合廠區">
@@ -296,7 +326,6 @@
             </div>
         </div>
 
-        <!-- 服務 3 -->
         <div class="service-row">
             <div class="service-image">
                 <img src="images/service-3.webp" class="main-img" alt="一站式環保工程現場勘查">
@@ -313,7 +342,6 @@
             </div>
         </div>
 
-        <!-- 服務 4 -->
         <div class="service-row">
             <div class="service-image">
                 <img src="images/service-4.webp" class="main-img" alt="企業環保法規諮詢會議">
@@ -332,7 +360,6 @@
 
     </section>
 
-    <!-- 服務流程區塊 -->
     <section class="process-section">
         <div class="process-header">
             <h2>五步一站式服務流程</h2>
@@ -340,31 +367,26 @@
         </div>
         
         <div class="process-container">
-            <!-- 步驟 1 -->
             <div class="process-step">
                 <div class="step-number">01</div>
                 <h3>需求諮詢與<br>現場勘查</h3>
                 <p>初步了解廢棄物產出狀況，專業團隊親臨廠區實地確認細節與採樣。</p>
             </div>
-            <!-- 步驟 2 -->
             <div class="process-step">
                 <div class="step-number">02</div>
                 <h3>方案規劃與<br>合規評估</h3>
                 <p>根據廢棄物特性代尋合法終端廠，提供透明化報價與最適處置規劃。</p>
             </div>
-            <!-- 步驟 3 -->
             <div class="process-step">
                 <div class="step-number">03</div>
                 <h3>簽訂合約與<br>網路申報</h3>
                 <p>簽署合法甲級清運合約，並協助完成環保署系統建檔與連線申報作業。</p>
             </div>
-            <!-- 步驟 4 -->
             <div class="process-step">
                 <div class="step-number">04</div>
                 <h3>專業車隊<br>派車清運</h3>
                 <p>依約定時間，派遣領有合格證照之專業清運車隊與人員進行現場作業。</p>
             </div>
-            <!-- 步驟 5 -->
             <div class="process-step">
                 <div class="step-number">05</div>
                 <h3>進廠處置與<br>流向確認</h3>
@@ -373,7 +395,6 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
     <footer id="contact">
         <div class="footer-content">
             <h3>利多源企業有限公司</h3>
@@ -382,7 +403,6 @@
             <p>📠 傳真號碼：(07) 322-9897</p>
             <p>✉️ 電子信箱：liduoyuan.kh@gmail.com</p>
             <p>🕒 服務時間：週一至週五 08:30 - 17:30</p>
-            <!-- 官方政府連結 -->
             <p style="margin-top: 15px;">🔗 相關連結：<a href="https://waste.moenv.gov.tw/RWD/Qry/" target="_blank" class="footer-link">環境部事業廢棄物申報及管理資訊系統</a></p>
         </div>
         <div class="footer-bottom">
@@ -390,10 +410,14 @@
         </div>
     </footer>
 
-    <!-- 回最上方按鈕 -->
+    <a href="https://line.me/R/ti/p/@296mdfaa" target="_blank" class="floating-line" aria-label="加入LINE好友">
+        <svg viewBox="0 0 24 24" fill="white" width="30px" height="30px">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.301.08.705.038 1.006l-.239 1.442c-.075.452-.303 1.479 1.295.807 1.598-.671 8.62-5.08 10.741-9.155.679-1.309 1.072-2.738 1.072-4.3zM7.551 12.391H5.161c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v3.94h1.411c.244 0 .444.2.444.444v.536c0 .244-.2.444-.444.444zm3.011 0h-.536c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v4.476c0 .244-.2.444-.444.444zm5.568 0h-.551c-.139 0-.271-.065-.355-.175l-2.028-2.673v2.404c0 .244-.2.444-.444.444h-.536c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.551c.139 0 .271.065.355.175l2.028 2.673V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v4.476c0 .244-.2.444-.444.444zm3.435-2.825h-1.411v-1.12h1.411c.244 0 .444-.2.444-.444v-.536c0-.244-.2-.444-.444-.444h-2.391c-.244 0-.444.2-.444.444v4.476c0 .244.2.444.444.444h2.391c.244 0 .444-.2.444-.444v-.536c0-.244-.2-.444-.444-.444z"/>
+        </svg>
+    </a>
+
     <a href="#top" class="back-to-top" id="backToTop">▲</a>
 
-    <!-- 互動腳本：處理漢堡選單與回最上方按鈕的顯示 -->
     <script>
         // 漢堡選單切換邏輯
         const mobileMenu = document.getElementById('mobile-menu');

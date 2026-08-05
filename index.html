@@ -395,8 +395,9 @@
         }
 
         /* =========================================
-           7. 回最上方按鈕 (Back to Top)
+           7. 飄浮按鈕 (Back to Top & LINE)
         ========================================= */
+        /* 回最上方按鈕 */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -426,6 +427,27 @@
         .back-to-top:hover { 
             background-color: var(--brand-teal); 
             transform: translateY(-5px); 
+        }
+
+        /* LINE 飄浮按鈕 */
+        .floating-line {
+            position: fixed;
+            bottom: 95px; /* 設定在 top 按鈕的上方，預留安全距離 */
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background-color: #00B900; /* LINE 官方專屬綠色 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 99;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-line:hover {
+            transform: translateY(-5px) scale(1.05);
         }
 
         /* =========================================
@@ -482,6 +504,21 @@
 
             .video-section { 
                 padding: 60px 5% 20px; 
+            }
+            
+            /* 手機版飄浮按鈕微調 (靠邊緣一點，避免擋住內容) */
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .floating-line {
+                bottom: 80px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -592,6 +629,12 @@
             <p>&copy; 2026 利多源企業有限公司 LI DUO YUAN ENTERPRISE CO., LTD. 版權所有.</p>
         </div>
     </footer>
+
+    <a href="https://line.me/R/ti/p/@296mdfaa" target="_blank" class="floating-line" aria-label="加入LINE好友">
+        <svg viewBox="0 0 24 24" fill="white" width="30px" height="30px">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.301.08.705.038 1.006l-.239 1.442c-.075.452-.303 1.479 1.295.807 1.598-.671 8.62-5.08 10.741-9.155.679-1.309 1.072-2.738 1.072-4.3zM7.551 12.391H5.161c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v3.94h1.411c.244 0 .444.2.444.444v.536c0 .244-.2.444-.444.444zm3.011 0h-.536c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v4.476c0 .244-.2.444-.444.444zm5.568 0h-.551c-.139 0-.271-.065-.355-.175l-2.028-2.673v2.404c0 .244-.2.444-.444.444h-.536c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.551c.139 0 .271.065.355.175l2.028 2.673V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v4.476c0 .244-.2.444-.444.444zm3.435-2.825h-1.411v-1.12h1.411c.244 0 .444-.2.444-.444v-.536c0-.244-.2-.444-.444-.444h-2.391c-.244 0-.444.2-.444.444v4.476c0 .244.2.444.444.444h2.391c.244 0 .444-.2.444-.444v-.536c0-.244-.2-.444-.444-.444z"/>
+        </svg>
+    </a>
 
     <a href="#top" class="back-to-top" id="backToTop">▲</a>
 

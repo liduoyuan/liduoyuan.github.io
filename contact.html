@@ -222,6 +222,10 @@
         .footer-link:hover { color: #ffffff; text-decoration: underline; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; font-size: 0.9rem; margin-top: 30px;}
 
+        /* =========================================
+           7. 飄浮按鈕 (Back to Top & LINE)
+        ========================================= */
+        /* 回最上方按鈕 */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
             width: 50px; height: 50px; background-color: var(--brand-green);
@@ -234,13 +238,36 @@
         .back-to-top.show { opacity: 1; visibility: visible; }
         .back-to-top:hover { background-color: var(--brand-teal); transform: translateY(-5px); }
 
+        /* LINE 飄浮按鈕 */
+        .floating-line {
+            position: fixed;
+            bottom: 95px; /* 設定在 top 按鈕的上方，預留安全距離 */
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #00B900; /* LINE 官方專屬綠色 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 99;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .floating-line:hover {
+            transform: translateY(-5px);
+            background-color: #009900;
+        }
+
         /* =========================================
-           7. 響應式網頁設計 (RWD)
+           8. 響應式網頁設計 (RWD)
         ========================================= */
         @media (max-width: 900px) {
             .contact-section { flex-direction: column; }
             .steps-wrapper { flex-direction: column; }
         }
+        
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links {
@@ -253,12 +280,26 @@
             .logo-title { font-size: 1.1rem; }
             .logo-slogan { font-size: 0.75rem; display: block; }
             .contact-form-box { padding: 30px 20px; }
+            
+            /* 手機版飄浮按鈕微調 (稍微縮小並靠邊緣，避免擋住內容) */
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .floating-line {
+                bottom: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body id="top">
 
-    <!-- 導覽列 -->
     <header>
         <a href="index.html" class="logo-container">
             <img src="images/logo.webp" alt="利多源企業有限公司 Logo">
@@ -276,7 +317,6 @@
         </nav>
     </header>
 
-    <!-- 內頁頂部橫幅 -->
     <section class="inner-hero">
         <img src="images/contact-banner.webp" alt="聯絡我們橫幅">
         <div class="inner-hero-content">
@@ -285,10 +325,8 @@
         </div>
     </section>
 
-    <!-- 聯絡資訊與表單區塊 -->
     <section class="contact-section">
         
-        <!-- 左側：聯絡資訊與地圖 -->
         <div class="contact-info-box">
             <h2>服務據點與聯絡方式</h2>
             <ul class="info-list">
@@ -299,25 +337,19 @@
                 <li><span class="icon">📍</span> <div><strong>公司地址：</strong><br>高雄市左營區博愛二路366號14樓之2<br><span style="font-size: 0.9rem; color: #888;">(服務範圍涵蓋全台及離島)</span></div></li>
             </ul>
 
-            <!-- Google 地圖 iframe嵌入 -->
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.029864275069!2d120.3015403!3d22.6663039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0509a2444df5%3A0xcda99fa991739f88!2zODA06auY6ZuE5biC5bem54ef5Y2A5Y2a5oSb5LqM6LevMzY26Jmf!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
-        <!-- 右側：線上諮詢表單 (修改支援免費空間靜態網頁) -->
         <div class="contact-form-box">
             <h2>線上預約諮詢</h2>
             <p class="form-desc">請填寫下方表單，我們的環保專員將於上班時間內儘速與您聯繫，為您安排專屬的評估方案。</p>
             
-            <!-- 使用 FormSubmit 服務，直接將表單寄到客戶信箱 -->
             <form action="https://formsubmit.co/liduoyuan.kh@gmail.com" method="POST">
                 
-                <!-- 系統隱藏設定 -->
                 <input type="hidden" name="_subject" value="【利多源官網】收到新的線上諮詢！">
-                <input type="hidden" name="_captcha" value="false"> <!-- 關閉圖形驗證碼，讓客戶填寫更順暢 -->
-
-                <div class="form-group">
+                <input type="hidden" name="_captcha" value="false"> <div class="form-group">
                     <label for="companyName">企業/公司名稱 *</label>
                     <input type="text" id="companyName" name="companyName" placeholder="請輸入貴公司名稱" required>
                 </div>
@@ -349,7 +381,6 @@
 
     </section>
 
-    <!-- 填單後的下一步 -->
     <section class="next-steps">
         <h3>填單後的處理流程</h3>
         <div class="steps-wrapper">
@@ -371,7 +402,6 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
     <footer id="contact">
         <div class="footer-content">
             <h3>利多源企業有限公司</h3>
@@ -383,14 +413,18 @@
             <p style="margin-top: 15px;">🔗 相關連結：<a href="https://waste.moenv.gov.tw/RWD/Qry/" target="_blank" class="footer-link">環境部事業廢棄物申報及管理資訊系統</a></p>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 利多源企業有限公司 LI DUO YUAN ENTERPRISE CO., LTD. 版權所有.</p>
+            <p>© 2026 利多源企業有限公司 LI DUO YUAN ENTERPRISE CO., LTD. 版權所有.</p>
         </div>
     </footer>
 
-    <!-- 回最上方按鈕 -->
+    <a href="https://line.me/R/ti/p/@296mdfaa" target="_blank" class="floating-line" aria-label="加入LINE好友">
+        <svg viewBox="0 0 24 24" fill="white" width="30px" height="30px">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.301.08.705.038 1.006l-.239 1.442c-.075.452-.303 1.479 1.295.807 1.598-.671 8.62-5.08 10.741-9.155.679-1.309 1.072-2.738 1.072-4.3zM7.551 12.391H5.161c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v3.94h1.411c.244 0 .444.2.444.444v.536c0 .244-.2.444-.444.444zm3.011 0h-.536c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v4.476c0 .244-.2.444-.444.444zm5.568 0h-.551c-.139 0-.271-.065-.355-.175l-2.028-2.673v2.404c0 .244-.2.444-.444.444h-.536c-.244 0-.444-.2-.444-.444V7.471c0-.244.2-.444.444-.444h.551c.139 0 .271.065.355.175l2.028 2.673V7.471c0-.244.2-.444.444-.444h.536c.244 0 .444.2.444.444v4.476c0 .244-.2.444-.444.444zm3.435-2.825h-1.411v-1.12h1.411c.244 0 .444-.2.444-.444v-.536c0-.244-.2-.444-.444-.444h-2.391c-.244 0-.444.2-.444.444v4.476c0 .244.2.444.444.444h2.391c.244 0 .444-.2.444-.444v-.536c0-.244-.2-.444-.444-.444z"/>
+        </svg>
+    </a>
+
     <a href="#top" class="back-to-top" id="backToTop">▲</a>
 
-    <!-- 互動腳本 -->
     <script>
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
